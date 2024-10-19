@@ -463,7 +463,7 @@ local function opener(size, term)
   elseif direction == "float" then
     ui.open_float(term)
   else
-    error("Invalid terminal direction")
+    -- error("Invalid terminal direction")
   end
 end
 
