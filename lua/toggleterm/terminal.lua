@@ -401,6 +401,8 @@ function Terminal:__spawn()
     self.id,
   })
   local dir = _get_dir(self.dir)
+  self.env = self.env or {}
+  self.env.TOGGLETERM_ID = tostring(self.id)
   self.job_id = fn.termopen(cmd, {
     detach = 1,
     cwd = dir,

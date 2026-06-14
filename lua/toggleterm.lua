@@ -426,6 +426,23 @@ local function setup_commands()
     { count = true, complete = commandline.toggle_term_complete, nargs = "*" }
   )
 
+  command(
+    "FocusTerm",
+    function(opts)
+      local count = opts.count
+      if count and count >= 1 then
+        local term = terms.get(count)
+        if term and term.bufnr == api.nvim_get_current_buf() then
+          return
+        end
+      end
+      M.toggle_command(opts.args, count)
+      _G.set_cursor_animation(0.0)
+      vim.cmd('stopinsert')
+    end,
+    { count = true, complete = commandline.toggle_term_complete, nargs = "*" }
+  )
+
   command("ToggleTermToggleAll", function(opts) M.toggle_all(opts.bang) end, { bang = true })
 
   command(
